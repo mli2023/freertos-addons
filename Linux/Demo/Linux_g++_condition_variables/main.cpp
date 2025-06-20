@@ -158,11 +158,13 @@ class ProducerThread : public Thread {
                     cerr << GetName() << " - queue is full!, waiting..." << endl;
                     Wait(notFullCv, boundedQueueLock);
                 }
-
+                
+                bool isEmpty = boundedQueue->IsEmpty();
                 boundedQueue->Add(DataGenerator);
                 DataGenerator++;
-
-                notEmptyCv.Signal();
+                
+                if (isEmpty)
+                    notEmptyCv.Signal();
 
                 boundedQueueLock.Unlock();
             }
@@ -210,14 +212,15 @@ class ConsumerThread : public Thread {
                     Wait(notEmptyCv, boundedQueueLock);
                 }
 
+                bool isFull = boundedQueue->IsFull();
                 int x = boundedQueue->Remove();
 
                 cerr << GetName() << " dequeued: " << x << endl;
 
                 configASSERT(DataVerified == x);
                 DataVerified++;
-
-                notFullCv.Signal();
+                if (isFull)
+                    notFullCv.Signal();
 
                 boundedQueueLock.Unlock();
             }
