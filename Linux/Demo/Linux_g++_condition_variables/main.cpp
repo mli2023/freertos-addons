@@ -45,10 +45,10 @@
 #include <list>
 #include "FreeRTOS.h"
 #include "task.h"
-#include "thread.hpp"
-#include "ticks.hpp"
-#include "mutex.hpp"
-#include "condition_variable.hpp"
+#include "cThread.h"
+#include "cTicks.h"
+#include "cMutex.h"
+#include "cConditionVariable.h"
 
 
 using namespace cpp_freertos;

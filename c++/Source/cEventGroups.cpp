@@ -38,7 +38,7 @@
  *
  ***************************************************************************/
 
-#include "event_groups.hpp"
+#include "cEventGroups.h"
 
 
 using namespace cpp_freertos;
