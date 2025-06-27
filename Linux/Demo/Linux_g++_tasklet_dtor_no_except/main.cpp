@@ -100,7 +100,7 @@ class TestTaskletWithReschedule : public Tasklet {
                  << Id << "](" << parameter << ")" << endl;
 
             for (int i = 0; i < 100000; i++)
-                Thread::Yield();
+                Thread::TaskYield();
 
             cout << "Complete TasketWithReschedule[" 
                  << Id << "](" << parameter << ")" << endl;
